@@ -22,6 +22,7 @@ public class MainViewModel : ViewModel
 
     private int boundSpinnerValue;
     private ColorViewModel colorViewModel = null!;
+    private MenuViewModel menuViewModel = null!;
     private FontsViewModel fontsViewModel = null!;
     private GalleryViewModel galleryViewModel = null!;
 
@@ -38,7 +39,7 @@ public class MainViewModel : ViewModel
 
         this.BoundSpinnerValue = 1;
         this.IsCheckedToggleButton3 = true;
-
+        this.MenuViewModel = new MenuViewModel();
         this.ColorViewModel = new ColorViewModel();
         this.FontsViewModel = new FontsViewModel();
         this.GalleryViewModel = new GalleryViewModel();
@@ -132,6 +133,22 @@ public class MainViewModel : ViewModel
             }
 
             this.colorViewModel = value;
+            this.OnPropertyChanged();
+        }
+    }
+    
+    public MenuViewModel MenuViewModel
+    {
+        get => this.menuViewModel;
+
+        private set
+        {
+            if (Equals(value, this.menuViewModel))
+            {
+                return;
+            }
+
+            this.menuViewModel = value;
             this.OnPropertyChanged();
         }
     }

@@ -1832,8 +1832,27 @@
                                            Icon="pack://application:,,,/Fluent.Ribbon.Showcase;component/Icons/App.ico"
                                            LargeIcon="pack://application:,,,/Fluent.Ribbon.Showcase;component/Icons/App.ico"
                                            ClosePopupOnMouseDownDelay="250"
+                                           ItemsSource="{Binding MenuViewModel.MenuItems}"
                                            ResizeMode="Both">
-                        <Fluent:MenuItem Header="ClosePopupOnMouseDown"
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Fluent:MenuItem Header="{Binding Header}" 
+                                                 IsCheckable="{Binding IsCheckable}"
+                                                 IsChecked="{Binding IsChecked}"
+                                                 ItemsSource="{Binding Children}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Fluent:MenuItem Header="{Binding Header}" 
+                                                             IsCheckable="{Binding IsCheckable}"
+                                                             IsChecked="{Binding IsChecked}"
+                                                             ItemsSource="{Binding ContextMenuItems}">
+                                            </Fluent:MenuItem>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </Fluent:MenuItem>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                        <!--<Fluent:MenuItem Header="ClosePopupOnMouseDown"
                                          IsCheckable="True"
                                          IsChecked="{Binding RelativeSource={RelativeSource AncestorType=Fluent:DropDownButton}, Path=ClosePopupOnMouseDown, Mode=TwoWay}" />
                         <Fluent:MenuItem Header="Item 1">
@@ -1922,7 +1941,7 @@
                         <Fluent:MenuItem Header="Item 22" />
                         <Fluent:MenuItem Header="Item 23" />
                         <Fluent:MenuItem Header="Item 24" />
-                        <Fluent:MenuItem Header="Item 25" />
+                        <Fluent:MenuItem Header="Item 25" />-->
                     </Fluent:DropDownButton>
                 </Fluent:RibbonGroupBox>
 
